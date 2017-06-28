@@ -1,0 +1,58 @@
+
+
+
+
+<h1>  {{id}}  </h1>
+<h2> {{ camptoedit.name }} </h2>
+
+
+<div class="container"  *ngIf = "editMode">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+  <div id="user-data">
+    <div class="form-group">
+      <label for="campname">Camp name</label>
+      <input
+        type="text"
+        id="campname"
+        class="form-control"
+        name="campname"
+        required
+        [(ngModel)] = "camptoedit.name"  >
+    </div>
+
+
+    <div class="form-group">
+      <label for="campimage">Image Url</label>
+      <input
+        type="text"
+        id="campimage"
+        class="form-control"
+        name="campimage"
+        required
+        [(ngModel)] = "camptoedit.imagePath"  >
+    </div>
+
+    <div class="form-group">
+      <label for="campdescription">Description</label>
+      <input
+        type="text"
+        id="campdescription"
+        class="form-control"
+        name="campdescription"
+        required
+        [(ngModel)] = "camptoedit.description"  >
+    </div>
+
+
+  </div>
+  <button class="btn btn-primary"
+          type="submit"
+          [disabled] = "!f.valid"
+          routerLink="/"
+  >Submit</button>
+</form>
+</div>
+
+<button (click)="onDelete()"
+        routerLink="/">Delete</button>
+

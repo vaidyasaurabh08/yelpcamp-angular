@@ -1,0 +1,33 @@
+
+
+<!-- <div *ngFor="let camp of allCamps" >
+	<h1> {{ camp.name }} </h1>
+	<h1> {{ camp.description }} </h1>
+	<img
+          [src]="camp.imagePath"
+          class="img-responsive"
+          style="max-height: 200px;">
+</div>
+ -->
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let camp of allCamps">
+      <div  class="thumbnail"  >
+        <img  [src]="camp.imagePath"
+              class="img-responsive"
+              style="max-height: 200px;"
+        >
+        <a href="#"
+           [routerLink] = " ['/camp' , camp.id] "
+           [queryParams]="{allowEdit: camp.id === 3 ? '1' : '0'}"   ><h3 align="center"> {{ camp.name }} </h3></a>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<router-outlet></router-outlet>-->
