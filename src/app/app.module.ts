@@ -13,6 +13,9 @@ import {AuthService} from './auth-service';
 import {AuthGuard} from './auth-guard.service';
 
 import { CampNewComponent } from './all-camps/camp-new/camp-new.component';
+import {HttpModule} from '@angular/http';
+import {DataStorageService} from './shared/data-storage.service';
+import {ManageCampsService} from './manage-campgrounds.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,10 @@ import { CampNewComponent } from './all-camps/camp-new/camp-new.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ AuthService, AuthGuard , DataStorageService, ManageCampsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,12 @@
 import {Camp} from './shared/camp.model';
+import { Subject } from 'rxjs/Subject';
 
 export class ManageCampsService{
 
-	campgrounds : Camp [] =[
+  campsChanged = new Subject<Camp[]>();
+
+
+  private campgrounds : Camp [] =[
 
 		new Camp ('camp1'  , 'This is the first camp' , 'http://www.ninja-creative.com/wp-content/uploads/revslider/homepage/big-ninja-2.png' , 1),
 		new Camp ('camp2'  , 'This is the second camp' , 'http://www.lanlinglaurel.com/data/out/52/4355911-ninja-pictures.png' , 2),
@@ -14,7 +18,7 @@ export class ManageCampsService{
 
 		getAllCamps(){
 			console.log("here");
-			return this.campgrounds;
+			return this.campgrounds.slice();
 
 		}
 
@@ -29,15 +33,23 @@ export class ManageCampsService{
 
     addCamp(newCamp:Camp){
 		  this.campgrounds.push(newCamp);
+      this.campsChanged.next(this.campgrounds.slice());
     }
 
     updateCamp(index:number , newCamp:Camp){
       this.campgrounds[index] = newCamp;
+      this.campsChanged.next(this.campgrounds.slice());
     }
 
     deleteCamp(index:number){
       console.log("deleting" + index);
       this.campgrounds.splice((index-1),1);
+      this.campsChanged.next(this.campgrounds.slice());
+    }
+
+    setCamps(camps: Camp[]){
+      this.campgrounds = camps;
+      this.campsChanged.next(this.campgrounds.slice());
     }
 
 }

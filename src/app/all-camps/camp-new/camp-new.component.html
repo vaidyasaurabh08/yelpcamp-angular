@@ -47,6 +47,7 @@
             type="submit"
             [disabled] = "!f.valid"
             routerLink="/"
+            (click)="onSubmit(f)"
           >Submit</button>
   </form>
 </div>
